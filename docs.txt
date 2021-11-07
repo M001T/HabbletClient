@@ -1,0 +1,9 @@
+- Evento
++ Método
+• Propriedade
+
+HabbletClient
+	- loaded -> Emitido quando o cliente é carregado
+				com todas informações iniciais.
+	+ EnterRoom(roomId: number) -> 	Entra no quarto pelo
+									Id especificado.
