@@ -8,6 +8,7 @@ let AvatarEffects = new (require("./AvatarEffects"))();
 let ModtoolCFHTopics = new (require("./ModtoolCFHTopics"))();
 let NotificationDialogMessage = new (require("./NotificationDialogMessage"))();
 let RoomUnitChat = new (require("./RoomUnitChat"))();
+let RoomUnitEvent = new (require("./RoomUnitEvent"))();
 let IncomingHeaders = require("../../IncomingHeaders");
 let Parser = require("../../Parser");
 
@@ -22,6 +23,7 @@ let parsers = {
 	325: ModtoolCFHTopics,
 	1992: NotificationDialogMessage,
 	1446: RoomUnitChat,
+	374: RoomUnitEvent,
 };
 
 class Incoming {

@@ -39,9 +39,14 @@ class ByteBuffer {
 	}
 
 	writeString(text=""){
-		this.writeShort(text.length);
-		for(let char of text)
-			this.writeByte(char.charCodeAt());
+		let string = Buffer.from(text);
+		this.writeShort(string.length);
+		if(string.length){
+			this.data = Buffer.concat([
+				this.data,
+				string
+			])
+		}
 	}
 
 	writeInt(value=0){
@@ -75,9 +80,8 @@ class ByteBuffer {
 
 	readString(){
 		let length = this.readShort();
-		let string = "";
-		for(let i = 0; i < length; i++)
-			string += String.fromCharCode(this.readByte());
+		let string = this.data.slice(this.offset, this.offset+length).toString();
+		this.offset += length;
 		return string;
 	}
 

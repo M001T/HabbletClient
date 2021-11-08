@@ -1,7 +1,9 @@
 let HabbletClient = require("./HabbletClient");
 
 //ontem eu comi as 20 novinhas e eu n peguei nenhum DST confia rapa
-let client = new HabbletClient("edb5289839928000a5e7fdf7a86717eb0a6e119e-36fe32dc8cd73326fdf3b92b9d62794c");
+let client = new HabbletClient(
+	"a6e01d4c727e927487d507dc6bd382ceba4c7e34-36fe32dc8cd73326fdf3b92b9d62794c"
+);
 
 client.on("Loaded", () => {
 
@@ -10,7 +12,6 @@ client.on("Loaded", () => {
 });
 
 client.on("RoomUnitChat", data => {
-
-	console.log(data.message)
-
-})
+	let unit = client.Room.GetUnitByIndex(data.roomIndex);
+	(unit && unit.username !== "bot00001") && client.SendMessage(data.message);
+});

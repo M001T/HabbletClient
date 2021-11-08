@@ -5,6 +5,8 @@ const OutgoingHeaders = require("./OutgoingHeaders");
 const IncomingHeaders = require("./IncomingHeaders");
 const Incoming = require("./packets/incoming/Incoming");
 const RoomEnterComposer = require("./packets/outgoing/RoomEnterComposer");
+const RoomUnitChatComposer = require("./packets/outgoing/RoomUnitChatComposer");
+const Room = require("./habbo/Room");
 const {EventEmitter} = require("events");
 
 let pattern = "{c*:version,c*:type,i:unknown1,i:unknown2}";
@@ -19,6 +21,7 @@ Incoming.RegisterPackets();
 class HabbletClient extends EventEmitter {
 
 	Connection;
+	Room = Room;
 
 	constructor(ssoTicket){
 		super();
@@ -57,8 +60,8 @@ class HabbletClient extends EventEmitter {
 
 			let check = Incoming.Parse(data, this);
 
-			if(!check.success)
-				console.log(`[Unknown Packet]: ${check.header}`);
+			// if(!check.success)
+			// 	console.log(`[Unknown Packet]: ${check.header}`);
 		});
 
 		this.Connection.on("close", () => {
@@ -69,6 +72,10 @@ class HabbletClient extends EventEmitter {
 
 	EnterRoom(roomId){
 		this.Connection.send(new RoomEnterComposer(roomId).compose());
+	}
+
+	SendMessage(message, bubbleId){
+		this.Connection.send(new RoomUnitChatComposer(message, bubbleId).compose());
 	}
 
 }
