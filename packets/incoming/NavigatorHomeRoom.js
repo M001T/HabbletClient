@@ -9,7 +9,7 @@ class NavigatorHomeRoom {
 			roomIdToEnter: packet.readInt()
 		}
 
-		client.emit("loaded");
+		client.emit("Loaded");
 
 		// console.log(data);
 	}

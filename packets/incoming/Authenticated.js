@@ -6,6 +6,8 @@ class Authenticated {
 
 		console.log("Authenticated.")
 
+		client.emit("Authenticated")
+
 	}
 
 }
