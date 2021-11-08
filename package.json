@@ -1,12 +1,13 @@
 {
   "name": "habblet",
   "version": "1.0.0",
-  "description": "",
+  "description": "Um cliente robô para o jogo Habblet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon index.js",
+    "start": "nodemon index.js"
   },
-  "author": "",
+  "author": "ReversiveDev",
   "license": "ISC",
   "dependencies": {
     "ws": "^8.2.3"
